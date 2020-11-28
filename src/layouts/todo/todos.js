@@ -1,31 +1,86 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View, FlatList} from 'react-native';
 
 import {AddTodo} from './addTodo';
 import {Todo} from './todo';
 
 export const Todos = () => {
   const [todos, setTodos] = useState([
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
-    {title: Date.now().toString(), title: 'hello'},
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
+    {
+      id: Date.now().toString() + Math.ceil(Math.random() * 1000000),
+      title: Math.ceil(Math.random() * 1000000),
+    },
   ]);
 
   const addTodo = (title) => {
-    // alert(value)
     setTodos((prev) => [
       {
         id: Date.now().toString(),
@@ -37,15 +92,11 @@ export const Todos = () => {
   return (
     <View style={styles.block}>
       <AddTodo onSubmit={(value) => addTodo(value)} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <View>
-          {todos.map((todo) => (
-            <Todo key={todo.id} title={todo.title} />
-          ))}
-        </View>
-      </ScrollView>
+      <FlatList
+        data={todos}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => <Todo title={`some text ${item.title}`} />}
+      />
     </View>
   );
 };

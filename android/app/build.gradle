@@ -120,9 +120,21 @@ def jscFlavor = 'org.webkit:android-jsc:+'
  */
 def enableHermes = project.ext.react.get("enableHermes", false);
 
+/** 
+ packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+**/
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-
+   
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -135,7 +147,9 @@ android {
         versionCode 1
         versionName "1.0"
         missingDimensionStrategy 'react-native-camera', 'general'
-
+        multiDexEnabled true
+        minSdkVersion 16
+        targetSdkVersion 28
     }
     splits {
         abi {
@@ -183,6 +197,11 @@ android {
 }
 
 dependencies {
+    // implementation 'androidx.multidex:multidex:2.0.1'  // <-- ADD THIS DEPENDENCY
+    // implementation 'com.android.support:multidex:2.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
